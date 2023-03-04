@@ -1,0 +1,35 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+package frc.robot.subsystems;
+
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+public class outtake extends SubsystemBase {
+  /** Creates a new ExampleSubsystem. */
+  public outtake() {}
+/** Motor controllers used for the spinning part of the intake/outtake are CAN Sparkmax */
+CANSparkMax RightIntake = new CANSparkMax(5, MotorType.kBrushless);
+CANSparkMax LeftIntake = new CANSparkMax(6, MotorType.kBrushless);
+
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
+    if(outtakeButton.whenPressed) {LeftIntake.set (-1.0); RightIntake.set (1.0);}
+    else{ 
+      LeftIntake.set (0); RightIntake.set (0);
+    }
+  }
+private int drivercontroller(int i) {
+  return 0;
+}
+  
+  @Override
+  public void simulationPeriodic() {
+    // This method will be called once per scheduler run during simulation
+  }
+}
